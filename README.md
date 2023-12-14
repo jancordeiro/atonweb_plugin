@@ -1,4 +1,4 @@
-# WP Scripts :trackball:	
+# WP Scripts :keyboard:	
 ---
 Alguns scripts que desenvolvi para usar no Wordpress sem a necessidade de plugins externos:
 
