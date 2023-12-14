@@ -1,2 +1,3 @@
-# wp_daily_video
-Plugin WordPress para exibir vídeos conforme o dia da semana.
+# WP Scripts
+---
+Alguns scripts que desenvolvi para usar no Wordpress sem a necessidade de plugins externos.
