@@ -1,4 +1,5 @@
-<?php 
+<?php // REMOVE THIS LINE
+
 /* USING OPEN GRAPH META TAGS
 *
 * Copy and paste this script into your theme's header.php within the head tags
