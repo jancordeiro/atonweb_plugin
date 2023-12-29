@@ -1,5 +1,9 @@
-// Disable Wordpress Admin Dashboard Boxes
-// Desabilita os boxes do painel administrativo 
+<?php // REMOVE THIS LINE
+
+/*
+* Disable Wordpress Admin Dashboard Boxes
+* Copy and paste this script into theme's function.php
+*/ 
 
 function remove_wordpress_dashboard() {
 
