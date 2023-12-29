@@ -1,5 +1,9 @@
-// Incluir esse script no arquivo HEADER.PHP do seu tema do Wordpress
-// O script deve estar dentro da tag HEAD
+<?php 
+/* USING OPEN GRAPH META TAGS
+*
+* Copy and paste this script into your theme's header.php within the head tags
+*
+*/
 
 <meta property="og:title" content="<?php echo get_the_title(); ?>"/>
 <meta property="og:description" content="<?php echo get_the_excerpt(); ?>"/>
@@ -11,9 +15,9 @@ if (has_post_thumbnail()) {
     <meta property="og:image" content="<?php echo esc_attr($thumbnail_src[0]); ?>"/>
     <?php
 } else {
-    // Se não houver imagem destacada, use uma imagem padrão
+    // If there's no featured image, use a default imagem
     ?>
-    <meta property="og:image" content="URL_da_sua_imagem_padrao.jpg"/>
+    <meta property="og:image" content="default_image_URL.jpg"/>
     <?php
 }
 ?>
