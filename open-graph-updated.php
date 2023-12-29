@@ -1,4 +1,10 @@
-<?php
+<?php 
+/* USING OPEN GRAPH META TAGS
+*
+* Copy and paste this script into your theme's header.php
+*
+*/
+
 if (is_singular()) {
     global $post;
 
@@ -7,8 +13,8 @@ if (is_singular()) {
         $thumbnail = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'full');
         $thumbnail_url = $thumbnail ? $thumbnail[0] : '';
     } else {
-        // If there is no featured image, use a default image
-        $default_image = 'URL_da_sua_imagem_padrao.jpg'; // Replace with your default image URL
+        // If there's no featured image, use a default image
+        $default_image = 'default_image_URL.jpg'; // Replace with your default image URL
         $thumbnail_url = $default_image;
     }
 
