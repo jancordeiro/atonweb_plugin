@@ -54,3 +54,6 @@ function remove_admin_title_suffix($admin_title, $title) {
     return 'Aton WEB - ' . $title;
 }
 add_filter('admin_title', 'remove_admin_title_suffix', 10, 2);
+
+// DISABLE ADMIN BAR FROM SITE PAGE
+add_filter('show_admin_bar', '__return_false');
