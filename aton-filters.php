@@ -51,7 +51,7 @@ add_filter('screen_options_show_screen', 'disable_screen_options');
 
 // REMOVES WP TITLE FROM ADMIN PAGES
 function remove_admin_title_suffix($admin_title, $title) {
-    return 'Aton WEB - ' . $title;
+    return $title;
 }
 add_filter('admin_title', 'remove_admin_title_suffix', 10, 2);
 
