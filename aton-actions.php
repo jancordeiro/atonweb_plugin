@@ -44,7 +44,11 @@ add_action('wp_before_admin_bar_render', 'remove_admin_bar_links', 999);
 
 // DISABLE UPDATE MENU
 function control_menu_items_shown() {
+	if (current_user_can('administrator')) {
+		return;
+	} else {
     remove_submenu_page( 'index.php', 'update-core.php' );
+	}
 }
 add_action( 'admin_menu', 'control_menu_items_shown' );
 
