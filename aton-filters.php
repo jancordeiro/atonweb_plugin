@@ -45,7 +45,11 @@ add_filter('update_footer', 'custom_admin_version_text', 999);
 
 // DISABLE ADMIN SCREEN OPTIONS TAB
 function disable_screen_options() {
-    return false;
+	if (current_user_can('administrator')) {
+		return;
+	} else {
+		return false;
+	}
 }
 add_filter('screen_options_show_screen', 'disable_screen_options');
 
