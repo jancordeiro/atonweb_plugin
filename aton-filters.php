@@ -59,5 +59,13 @@ function remove_admin_title_suffix($admin_title, $title) {
 }
 add_filter('admin_title', 'remove_admin_title_suffix', 10, 2);
 
-// DISABLE ADMIN BAR FROM SITE PAGE
-add_filter('show_admin_bar', '__return_false');
+// HIDE FRONT-END ADMIN BAR
+function hide_admin_bar_if_non_admin() {
+    if (!current_user_can('administrator')) {
+        return false;
+    } else {
+		return;
+	}
+}
+    return true;
+add_filter('show_admin_bar', 'hide_admin_bar_if_non_admin');
