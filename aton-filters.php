@@ -61,11 +61,10 @@ add_filter('admin_title', 'remove_admin_title_suffix', 10, 2);
 
 // HIDE FRONT-END ADMIN BAR
 function hide_admin_bar_if_non_admin() {
-    if (!current_user_can('administrator')) {
-        return false;
+    if (current_user_can('administrator')) {
+        return true;
     } else {
-		return;
+		'__return_false';
 	}
 }
-    return true;
 add_filter('show_admin_bar', 'hide_admin_bar_if_non_admin');
