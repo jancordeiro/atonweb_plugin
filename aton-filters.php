@@ -16,12 +16,6 @@ function remove_lost_password_text($text) {
 }
 add_filter('gettext', 'remove_lost_password_text');
 
-/* CHANGE LOGIN URL LINK
-function custom_login_url() {
-    return admin_url();
-}
-add_filter('login_headerurl', 'custom_login_url');*/
-
 // Disable Language Dropdown on Login Screen
 add_filter( 'login_display_language_dropdown', '__return_false' );
 
