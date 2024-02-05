@@ -132,7 +132,7 @@ function hide_admin_menus() {
         // remove_menu_page('edit.php?post_type=page'); // Pages
         remove_menu_page('edit-comments.php'); // Comments
         remove_menu_page('elementor'); // Elementor
-		remove_menu_page('edit.php?post_type=elementor_library'); // Elementor Library
+	remove_menu_page('edit.php?post_type=elementor_library'); // Elementor Library
         remove_menu_page('themes.php'); // Appearance
         remove_menu_page('plugins.php'); // Plugins
         remove_menu_page('tools.php'); // Tools
