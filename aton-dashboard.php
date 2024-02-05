@@ -16,7 +16,7 @@ function load_aton_admin_style() {
 add_action('admin_enqueue_scripts', 'load_aton_admin_style');
 
 function load_aton_login_style() {
-	$login_css = plugins_ulr('/aton-login-style.css', __FILE__);
+	$login_css = plugins_url('/aton-login-style.css', __FILE__);
 	
     	wp_enqueue_style('aton-login-css', $login_css, false);
 }
