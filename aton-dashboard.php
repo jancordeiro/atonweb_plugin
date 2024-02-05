@@ -9,12 +9,16 @@
 
 // LOAD CSS FILES
 function load_aton_admin_style() {
-    wp_enqueue_style('aton_admin_css', get_stylesheet_directory_uri() . '/aton-admin-style.css');
+	$admin_css = plugins_url('/aton-admin-style.css', __FILE__);
+	
+    	wp_enqueue_style('aton_admin_css', $admin_css);
 }
 add_action('admin_enqueue_scripts', 'load_aton_admin_style');
 
 function load_aton_login_style() {
-    wp_enqueue_style('aton-login-css', get_stylesheet_directory_uri() . '/aton-login-style.css', false);
+	$login_css = plugins_ulr('/aton-login-style.css', __FILE__);
+	
+    	wp_enqueue_style('aton-login-css', $login_css, false);
 }
 add_action('login_enqueue_scripts', 'load_aton_login_style');
 
