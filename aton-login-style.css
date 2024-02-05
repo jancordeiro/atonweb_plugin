@@ -59,31 +59,3 @@ body.login {
 #nav, #backtoblog {
 	display: none;
 }
-
-/*.login form input {
-	width: 240px;
-	height: 48px;
-	border: 1px solid #fff;
-	border-radius: 10px;
-	display: block;
-}
-
-.login form input:focus,
-.login form textarea:focus {
-	background-color: rgba(221,221,221, 0.5);
-	box-shadow: 0 0 5px 1px rgba(33,33,33,.5);
-	overflow: hidden;
-}
-
-.login form .input,
-.login input[type="text"] {
-	color: #efc94f;
-}
-
-input#rememberme {
-	height: 18px;
-	width: 18px;
-	display: inline;
-	vertical-align: middle;
-	margin: 10px 0;
-}*/
