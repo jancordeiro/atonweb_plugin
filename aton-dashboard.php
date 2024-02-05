@@ -7,6 +7,17 @@
  * Developer: Jan Cordeiro - https://jancordeiro.github.io
  */
 
+// LOAD CSS FILES
+function load_aton_admin_style() {
+    wp_enqueue_style('aton_admin_css', get_stylesheet_directory_uri() . '/aton-admin-style.css');
+}
+add_action('admin_enqueue_scripts', 'load_aton_admin_style');
+
+function load_aton_login_style() {
+    wp_enqueue_style('aton-login-css', get_stylesheet_directory_uri() . '/aton-login-style.css', false);
+}
+add_action('login_enqueue_scripts', 'load_aton_login_style');
+
 // ATON WEB DASHBOARD WIDGET
 function aton_quicklinks_widget() {
     ?>
@@ -14,8 +25,8 @@ function aton_quicklinks_widget() {
         <h2><i class="dashicons dashicons-store"></i> MEU SITE</h2>
         <a href="post-new.php?post_type=product" class="button button-primary button-large"><i class="dashicons dashicons-cart"></i> Cadastrar Produto</a>
         <a href="edit.php?post_type=product" class="button button-primary button-large"><i class="dashicons dashicons-text-page"></i> Editar Produtos</a>
-		<a href="post-new.php?post_type=shop_coupon" class="button button-primary button-large"><i class="dashicons dashicons-tickets-alt"></i> Cadastrar Cupom</a>
-		<a href="edit.php?post_type=shop_coupon" class="button button-primary button-large"><i class="dashicons dashicons-tickets-alt"></i> Editar Cupons</a>
+	<a href="post-new.php?post_type=shop_coupon" class="button button-primary button-large"><i class="dashicons dashicons-tickets-alt"></i> Cadastrar Cupom</a>
+	<a href="edit.php?post_type=shop_coupon" class="button button-primary button-large"><i class="dashicons dashicons-tickets-alt"></i> Editar Cupons</a>
         <a href="admin.php?page=wc-reports" class="button button-primary button-large"><i class="dashicons dashicons-chart-bar"></i> Relatórios da Loja</a>
 
         <h2><i class="dashicons dashicons-admin-home"></i> ADMIN</h2>
@@ -39,9 +50,6 @@ add_action('wp_dashboard_setup', 'add_aton_quicklinks_widget');
 // ATON VIDEO WIDGET
 function aton_video_widget(){
 	echo '<center><iframe width="400" height="225" src="https://www.youtube.com/embed/vTM3sytSzmk?si=vIQSDmQqc5ncCOn9" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></center>';
-	/*?>
-	<iframe width="400" height="225" src="https://www.youtube.com/embed/vTM3sytSzmk?si=vIQSDmQqc5ncCOn9" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-	<?php*/
 }
 // ADD ATON VIDEO WIDGET
 function add_aton_video_widget(){
