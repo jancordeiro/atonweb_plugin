@@ -67,7 +67,8 @@ function disable_dashboard_metaboxes() {
 
     if (!current_user_can('administrator')) {
 		
-        remove_meta_box('dashboard_right_now', 'dashboard', 'normal');          // At a Glance
+        remove_meta_box( 'health_check_status', 'dashboard', 'normal' );	// Site Health Status
+	remove_meta_box('dashboard_right_now', 'dashboard', 'normal');          // At a Glance
         remove_meta_box('dashboard_quick_press', 'dashboard', 'side');          // Quick Draft
         remove_meta_box('dashboard_primary', 'dashboard', 'side');              // WordPress Events and News
         remove_meta_box('dashboard_activity', 'dashboard', 'normal');           // Activity
