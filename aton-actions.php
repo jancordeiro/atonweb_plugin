@@ -7,7 +7,7 @@
  * Developer: Jan Cordeiro - https://jancordeiro.github.io
  */
 
-// ATON ADMIN BAR LOGO
+// ADD ATON LOGO NODE
 function aton_admin_bar_logo($wp_admin_bar) {
     $favicon_url = get_site_icon_url();
     $wp_admin_bar->remove_node('wp-logo');
@@ -18,29 +18,6 @@ function aton_admin_bar_logo($wp_admin_bar) {
     ));
 }
 add_action('admin_bar_menu', 'aton_admin_bar_logo', 11);
-
-// REMOVE WP LINKS EXCEPT FOR ADMINS
-function remove_admin_bar_links() {
-    
-	if(current_user_can('administrator')) {
-		return;
-	} else {
-		global $wp_admin_bar;
-
-		$wp_admin_bar->remove_node('updates');
-		$wp_admin_bar->remove_node('comments');
-		$wp_admin_bar->remove_node('new-content');
-
-		$wp_admin_bar->remove_menu('about');
-		$wp_admin_bar->remove_menu('wporg');
-		$wp_admin_bar->remove_menu('documentation');
-		$wp_admin_bar->remove_menu('support-forums');
-		$wp_admin_bar->remove_menu('feedback');
-		$wp_admin_bar->remove_menu('contribute');
-		$wp_admin_bar->remove_menu('learn');
-	}
-}
-add_action('wp_before_admin_bar_render', 'remove_admin_bar_links', 999);
 
 // DISABLE UPDATE MENU
 function control_menu_items_shown() {
