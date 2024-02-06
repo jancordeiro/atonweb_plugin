@@ -113,4 +113,47 @@ function show_options() {
     <?php
 }
 add_action('admin_menu', 'add_aton_menu');
+
+// SUBMENU TO HIDE MENU OPTIONS
+function add_submenu_config() {
+    add_submenu_page(
+		'aton-web-cms',
+		'Hide Menus',
+		'Hide Menus',
+		'manage_options',
+		'hide-menus',
+		'hide_menus_config'
+	);
+}
+add_action('admin_menu', 'add_submenu_config');
+
+// SHOW CONFIG PAGE TO HIDE MENUS
+function hide_menus_config() {
+    if (!current_user_can('manage_options')) {
+        wp_die('Você não tem permissão para acessar esta página.');
+    }
+
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        update_option('removed_menus', $_POST['removed_menus']);
+        echo '<div class="notice notice-success"><p>Opções salvas com sucesso!</p></div>';
+    }
+
+    $removed_menus = get_option('removed_menus', array());
+
+    ?>
+    <div class="wrap">
+        <h2>Configurações do Menu</h2>
+        <form method="post">
+            <p>Selecione os menus que deseja remover:</p>
+            <label><input type="checkbox" name="menus_removidos[]" value="posts" <?php checked(in_array('posts', $removed_menus)); ?>> Posts</label><br>
+            <label><input type="checkbox" name="menus_removidos[]" value="media" <?php checked(in_array('media', $removed_menus)); ?>> Mídia</label><br>
+            <label><input type="checkbox" name="menus_removidos[]" value="pages" <?php checked(in_array('pages', $removed_menus)); ?>> Páginas</label><br>
+            <label><input type="checkbox" name="menus_removidos[]" value="comments" <?php checked(in_array('comments', $removed_menus)); ?>> Comentários</label><br>
+            <label><input type="checkbox" name="menus_removidos[]" value="tools" <?php checked(in_array('tools', $removed_menus)); ?>> Ferramentas</label><br>
+            <label><input type="checkbox" name="menus_removidos[]" value="settings" <?php checked(in_array('settings', $removed_menus)); ?>> Configurações</label><br>
+            <p><input type="submit" class="button-primary" value="Salvar Opções"></p>
+        </form>
+    </div>
+    <?php
+}
 ?>
