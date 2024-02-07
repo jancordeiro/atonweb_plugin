@@ -145,12 +145,12 @@ function hide_menus_config() {
         <h2>Configurações do Menu</h2>
         <form method="post">
             <p>Selecione os menus que deseja remover:</p>
-            <label><input type="checkbox" name="menus_removidos[]" value="posts" <?php checked(in_array('posts', $removed_menus)); ?>> Posts</label><br>
-            <label><input type="checkbox" name="menus_removidos[]" value="media" <?php checked(in_array('media', $removed_menus)); ?>> Mídia</label><br>
-            <label><input type="checkbox" name="menus_removidos[]" value="pages" <?php checked(in_array('pages', $removed_menus)); ?>> Páginas</label><br>
-            <label><input type="checkbox" name="menus_removidos[]" value="comments" <?php checked(in_array('comments', $removed_menus)); ?>> Comentários</label><br>
-            <label><input type="checkbox" name="menus_removidos[]" value="tools" <?php checked(in_array('tools', $removed_menus)); ?>> Ferramentas</label><br>
-            <label><input type="checkbox" name="menus_removidos[]" value="settings" <?php checked(in_array('settings', $removed_menus)); ?>> Configurações</label><br>
+            <label><input type="checkbox" name="removed_menus[]" value="posts" <?php checked(in_array('posts', $removed_menus)); ?>> Posts</label><br>
+            <label><input type="checkbox" name="removed_menus[]" value="media" <?php checked(in_array('media', $removed_menus)); ?>> Mídia</label><br>
+            <label><input type="checkbox" name="removed_menus[]" value="pages" <?php checked(in_array('pages', $removed_menus)); ?>> Páginas</label><br>
+            <label><input type="checkbox" name="removed_menus[]" value="comments" <?php checked(in_array('comments', $removed_menus)); ?>> Comentários</label><br>
+            <label><input type="checkbox" name="removed_menus[]" value="tools" <?php checked(in_array('tools', $removed_menus)); ?>> Ferramentas</label><br>
+            <label><input type="checkbox" name="removed_menus[]" value="settings" <?php checked(in_array('settings', $removed_menus)); ?>> Configurações</label><br>
             <p><input type="submit" class="button-primary" value="Salvar Opções"></p>
         </form>
     </div>
