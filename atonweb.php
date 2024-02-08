@@ -156,4 +156,138 @@ function hide_menus_config() {
     </div>
     <?php
 }
+
+// ADD SUBMENU PAGE TO SETUP A LOGIN LOGO
+function add_login_logo_page() {
+    add_submenu_page(
+        'aton-web-cms', 					// parent slug
+        'Replace Login Logo', 				// page title
+        'Replace Login Logo',				// submenu title
+        'manage_options', 					// admin rola required to access
+        'replace-login-logo',	 			// page slug
+        'replace_login_logo_page' 			// callback function
+    );
+}
+add_action('admin_menu', 'add_login_logo_page');
+
+function replace_login_logo_page() {
+    if (!current_user_can('manage_options')) {
+        wp_die('Você não tem permissão para acessar esta página.');
+    }
+	
+	wp_enqueue_script('jquery');
+	
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        if (isset($_POST['myplugin_login_settings_nonce']) && wp_verify_nonce($_POST['myplugin_login_settings_nonce'], 'myplugin_login_settings_nonce')) {
+            // Save changes
+            update_option('myplugin_login_logo', $_POST['login_logo']);
+            update_option('myplugin_login_custom_link', $_POST['custom_link']);
+            update_option('myplugin_login_custom_link_url', $_POST['custom_link_url']);
+            echo '<div class="notice notice-success"><p>Opções salvas com sucesso!</p></div>';
+        }
+    }
+
+    // Get current settings
+    $login_logo_id = get_option('myplugin_login_logo_id', '');
+    $custom_link = get_option('myplugin_login_custom_link', '');
+    $custom_link_url = get_option('myplugin_login_custom_link_url', '');
+
+    // Get logo URL if it exists
+    $login_logo_url = '';
+    if (!empty($login_logo_id)) {
+        $login_logo_attachment = wp_get_attachment_image_src($login_logo_id, 'full');
+        if ($login_logo_attachment) {
+            $login_logo_url = $login_logo_attachment[0];
+        }
+    }
+
+    // Show settings form
+    ?>
+    <div class="wrap">
+        <h2>Configurações de Login</h2>
+        <form method="post">
+            <?php wp_nonce_field('myplugin_login_settings_nonce', 'myplugin_login_settings_nonce'); ?>
+            <label for="login_logo">Logo de Login:</label><br>
+            <?php
+            if (!empty($login_logo_id)) {
+                echo wp_get_attachment_image($login_logo_id, 'thumbnail');
+                echo '<br>';
+            }
+            ?>
+            <input type="hidden" name="login_logo" id="login_logo" value="<?php echo esc_attr($login_logo_id); ?>">
+            <button id="upload_logo_button" class="button-secondary">Selecionar Imagem</button>
+            <?php if (!empty($login_logo_id)) : ?>
+                <button id="remove_logo_button" class="button-secondary">Remover Imagem</button>
+            <?php endif; ?>
+            <br>
+            <label for="custom_link">Texto do Link:</label><br>
+            <input type="text" name="custom_link" value="<?php echo esc_attr($custom_link); ?>"><br>
+            <label for="custom_link_url">URL do Link:</label><br>
+            <input type="text" name="custom_link_url" value="<?php echo esc_attr($custom_link_url); ?>"><br>
+            <input type="submit" class="button-primary" value="Salvar Configurações">
+        </form>
+    </div>
+
+    <script>
+    jQuery(document).ready(function($) {
+        $('#upload_logo_button').click(function(e) {
+            e.preventDefault();
+            var mediaUploader = wp.media({
+                title: 'Escolha uma Imagem para o Logo',
+                button: {
+                    text: 'Selecionar'
+                },
+                multiple: false
+            });
+            mediaUploader.on('select', function() {
+                var attachment = mediaUploader.state().get('selection').first().toJSON();
+                $('#login_logo').val(attachment.id);
+                $('#login_logo').next().html('<img src="' + attachment.url + '" style="max-width: 200px;">');
+            });
+            mediaUploader.open();
+        });
+
+        $('#remove_logo_button').click(function(e) {
+            e.preventDefault();
+            $('#login_logo').val('');
+            $('#login_logo').next().html('');
+        });
+    });
+    </script>
+    <?php
+}
+
+// Function to replace login logo
+function replace_login_logo() {
+    $login_logo_id = get_option('myplugin_login_logo', '');
+    if (!empty($login_logo_id)) {
+        echo '<style type="text/css">
+            .login h1 a { background-image: url(' . esc_url($login_logo_id) . ') !important; }
+        </style>';
+    }
+}
+add_action('login_enqueue_scripts', 'replace_login_logo');
+
+// Replace WP logo links
+function replace_login_links() {
+    $custom_link = get_option('myplugin_login_custom_link', '');
+    $custom_link_url = get_option('myplugin_login_custom_link_url', '');
+
+    if (!empty($custom_link) && !empty($custom_link_url)) {
+        ?>
+        <style type="text/css">
+            .login #nav a, .login #backtoblog a { display: none; }
+        </style>
+        <script type="text/javascript">
+            document.addEventListener('DOMContentLoaded', function() {
+                var loginBackToLink = document.querySelector('.login #backtoblog');
+                if (loginBackToLink) {
+                    loginBackToLink.innerHTML = '<a href="<?php echo esc_url($custom_link_url); ?>"><?php echo esc_html($custom_link); ?></a>';
+                }
+            });
+        </script>
+        <?php
+    }
+}
+add_action('login_footer', 'replace_login_links');
 ?>
