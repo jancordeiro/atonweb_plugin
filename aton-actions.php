@@ -7,7 +7,7 @@
  * Developer: Jan Cordeiro - https://jancordeiro.github.io
  */
 
-// ADD ATON LOGO NODE
+// ADD ATON BAR LOGO
 function aton_admin_bar_logo($wp_admin_bar) {
     $favicon_url = get_site_icon_url();
     $wp_admin_bar->remove_node('wp-logo');
@@ -19,18 +19,28 @@ function aton_admin_bar_logo($wp_admin_bar) {
 }
 add_action('admin_bar_menu', 'aton_admin_bar_logo', 11);
 
-// DISABLE UPDATE MENU
-function control_menu_items_shown() {
-	if (current_user_can('administrator')) {
-		return;
-	} else {
-    remove_submenu_page( 'index.php', 'update-core.php' );
-	}
+// REMOVE DASHBOARD MENUS
+function remove_dashboard_menus() {
+    if (!current_user_can('administrator')) {
+		
+        remove_submenu_page( 'index.php', 'update-core.php' ); // Atualizações
+	remove_menu_page('edit.php'); // Posts
+	remove_menu_page('upload.php'); // Media
+        remove_menu_page('edit-comments.php'); // Comentários
+        remove_menu_page('edit.php?post_type=page'); // Páginas
+        remove_menu_page('elementor'); // Elementor
+	remove_menu_page( 'edit.php?post_type=elementor_library' ); // Modelos
+        remove_menu_page('themes.php'); // Aparência
+        remove_menu_page('plugins.php'); // Plugins
+        remove_menu_page('users.php'); // Usuários
+        remove_menu_page('tools.php'); // Ferramentas
+        remove_menu_page('options-general.php'); // Configurações
+    }
 }
-add_action( 'admin_menu', 'control_menu_items_shown' );
+add_action('admin_menu', 'remove_dashboard_menus', 10);
 
 // ADMIN WELCOME NOTICE
-function test_dashboard_notice(){
+function aton_web_greeting(){
 	$current_screen = get_current_screen();
 	$current_user = wp_get_current_user();
 	$user_name = $current_user->display_name;
@@ -44,7 +54,7 @@ function test_dashboard_notice(){
 		<?php
 	}
 }
-add_action( 'all_admin_notices', 'test_dashboard_notice' );
+add_action( 'all_admin_notices', 'aton_web_greeting' );
 
 // DISABLE CONTEXTUAL HELP TABS
 function remove_contextual_help() {
@@ -67,13 +77,12 @@ function disable_dashboard_metaboxes() {
 
     if (!current_user_can('administrator')) {
 		
-        remove_meta_box( 'health_check_status', 'dashboard', 'normal' );	// Site Health Status
-	remove_meta_box('dashboard_right_now', 'dashboard', 'normal');          // At a Glance
+        remove_meta_box('dashboard_right_now', 'dashboard', 'normal');          // At a Glance
         remove_meta_box('dashboard_quick_press', 'dashboard', 'side');          // Quick Draft
         remove_meta_box('dashboard_primary', 'dashboard', 'side');              // WordPress Events and News
         remove_meta_box('dashboard_activity', 'dashboard', 'normal');           // Activity
-	remove_meta_box('e-dashboard-overview', 'dashboard', 'side');		// Elementor News
-	remove_action('welcome_panel', 'wp_welcome_panel');			// Welcome Panel
+	remove_meta_box('e-dashboard-overview', 'dashboard', 'side');           // Elementor News
+        remove_action('welcome_panel', 'wp_welcome_panel');			            // Welcome Panel
     }
 }
 add_action('wp_dashboard_setup', 'disable_dashboard_metaboxes');
@@ -101,32 +110,3 @@ function add_open_graph_tags() {
     }
 }
 add_action('wp_head', 'add_open_graph_tags', 5);
-
-/* HIDE ADMIN MENU FOR OTHER USERS
-function hide_admin_menus() {
-    if (!current_user_can('administrator')) {
-        remove_menu_page('edit.php'); // Posts
-        remove_menu_page('upload.php'); // Media
-        // remove_menu_page('edit.php?post_type=page'); // Pages
-        remove_menu_page('edit-comments.php'); // Comments
-        remove_menu_page('elementor'); // Elementor
-	remove_menu_page('edit.php?post_type=elementor_library'); // Elementor Library
-        remove_menu_page('themes.php'); // Appearance
-        remove_menu_page('plugins.php'); // Plugins
-        remove_menu_page('tools.php'); // Tools
-        remove_menu_page('options-general.php'); // Settings
-    }
-}
-add_action('admin_menu', 'hide_admin_menus');*/
-
-// DISABLE ADMIN MENU AND EXPAND DASHBOARD AND FOOTER CONTENT EXCEPT FOR ADMINS
-function expand_wpbody_content() {
-	if (!current_user_can('administrator')) {
-		echo '<style>
-			#adminmenumain { display: none; }
-			#wpbody-content { margin-left: 0; }
-			#wpcontent, #wpfooter { margin-left: 0; }
-			</style>';
-	}
-}
-add_action('admin_head', 'expand_wpbody_content');
