@@ -29,24 +29,32 @@ function add_aton_menu() {
 }
 
 function show_options() {
-	// Função para exibir instruções no menu
     ?>
     <div class="wrap">
         <h2>ATON WEB - CMS</h2>
-        <p>Plugin de uso exclusivo da agência Aton WEB com as seguintes funcionalidades:</p>
-        <ol>
-            <li>Personalizar tela de login;</li>
-            <li>Esconder ou exibir items do menu;</li>
-			<li>Painel com atalhos que facilitam o uso;</li>
-			<li>Tutoriais para os clientes Aton WEB;</li>
-        </ol><br/>
-		<pre>
+			<p>This is a plugin for WordPress instances with these features</p>
+			<!-- IN PORTUGUESE
+	    		<p>Plugin de uso exclusivo da agência Aton WEB com as seguintes funcionalidades:</p>-->
+			<ol>
+				<li>Custom login page;</li>
+				<li>Hide menus from panel;</li>
+				<li>Shortcuts on the panel;</li>
+				<li>Exclusive tutorials for customers;</li>
+				
+				
+				<!-- IN PORTUGUESE
+				<li>Personalizar tela de login;</li>
+				<li>Esconder ou exibir items do menu;</li>
+				<li>Painel com atalhos que facilitam o uso;</li>
+				<li>Tutoriais para os clientes Aton WEB;</li>-->
+			</ol><br/>
+			<pre>
 Aton WEB Plugin
 Version: 1.0
-Desenvolvedores: Jan Cordeiro.
-		</pre>
-    </div>
-    <?php
+Developers: Jan Cordeiro.
+			</pre>
+		</div>
+		<?php
 }
 add_action('admin_menu', 'add_aton_menu');
 ?>
