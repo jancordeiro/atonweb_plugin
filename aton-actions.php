@@ -23,18 +23,18 @@ add_action('admin_bar_menu', 'aton_admin_bar_logo', 11);
 function remove_dashboard_menus() {
     if (!current_user_can('administrator')) {
 		
-        remove_submenu_page( 'index.php', 'update-core.php' ); // Atualizações
+        remove_submenu_page( 'index.php', 'update-core.php' ); // Updates
 	remove_menu_page('edit.php'); // Posts
 	remove_menu_page('upload.php'); // Media
-        remove_menu_page('edit-comments.php'); // Comentários
-        remove_menu_page('edit.php?post_type=page'); // Páginas
+        remove_menu_page('edit-comments.php'); // Comments
+        remove_menu_page('edit.php?post_type=page'); // Pages
         remove_menu_page('elementor'); // Elementor
-	remove_menu_page( 'edit.php?post_type=elementor_library' ); // Modelos
-        remove_menu_page('themes.php'); // Aparência
+	remove_menu_page( 'edit.php?post_type=elementor_library' ); // Elementor Library
+        remove_menu_page('themes.php'); // Themes
         remove_menu_page('plugins.php'); // Plugins
-        remove_menu_page('users.php'); // Usuários
-        remove_menu_page('tools.php'); // Ferramentas
-        remove_menu_page('options-general.php'); // Configurações
+        remove_menu_page('users.php'); // Users
+        remove_menu_page('tools.php'); // Tools
+        remove_menu_page('options-general.php'); // Settings
     }
 }
 add_action('admin_menu', 'remove_dashboard_menus', 10);
@@ -49,7 +49,9 @@ function aton_web_greeting(){
 	if ($current_screen && $current_screen->id === 'dashboard'){
 		?>
 		<div class="notice updated is-dismissible">
-			<p>Olá, <strong style="font-weight: bold;"><?php echo $user_name; ?></strong>! Aqui você gerencia seu site. 🌐</p>
+			<p>Hello, <strong style="font-weight: bold;"><?php echo $user_name; ?></strong>! Manage your website here. 🌐</p>
+			<!-- IN PORTUGUESE
+			<p>Olá, <strong style="font-weight: bold;"><?php echo $user_name; ?></strong>! Aqui você gerencia seu site. 🌐</p>-->
 		</div>
 		<?php
 	}
@@ -67,7 +69,7 @@ add_action('admin_head', 'remove_contextual_help');
 function replace_howdy_word($wp_admin_bar) {
     
     $my_account = $wp_admin_bar->get_node('my-account');
-    $my_account->title = str_replace('Howdy', 'Olá', $my_account->title);
+    $my_account->title = str_replace('Howdy', 'Hello', $my_account->title);
     $wp_admin_bar->add_node($my_account);
 }
 add_action('admin_bar_menu', 'replace_howdy_word');
@@ -82,7 +84,7 @@ function disable_dashboard_metaboxes() {
         remove_meta_box('dashboard_primary', 'dashboard', 'side');              // WordPress Events and News
         remove_meta_box('dashboard_activity', 'dashboard', 'normal');           // Activity
 	remove_meta_box('e-dashboard-overview', 'dashboard', 'side');           // Elementor News
-        remove_action('welcome_panel', 'wp_welcome_panel');			            // Welcome Panel
+        remove_action('welcome_panel', 'wp_welcome_panel');			// Welcome Panel
     }
 }
 add_action('wp_dashboard_setup', 'disable_dashboard_metaboxes');
