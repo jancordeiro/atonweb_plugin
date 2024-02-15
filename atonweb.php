@@ -24,7 +24,7 @@ function add_aton_menu() {
         'aton-web-cms',
         'show_options',
         plugin_dir_URL(__FILE__) . '/images/atonweb.svg',
-		80
+        2.5
     );
 }
 
