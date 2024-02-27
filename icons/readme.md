@@ -1,1 +1,0 @@
-Put the icons here.
