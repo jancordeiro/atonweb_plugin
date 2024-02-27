@@ -12,3 +12,4 @@ include_once 'aton-dashboard.php';
 include_once 'aton-actions.php';
 include_once 'aton-filters.php';
 include_once 'aton-shortcodes.php';
+include_once 'aton-custom-icons.php';
