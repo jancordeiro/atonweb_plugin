@@ -83,7 +83,7 @@ function disable_dashboard_metaboxes() {
         remove_meta_box('dashboard_quick_press', 'dashboard', 'side');          // Quick Draft
         remove_meta_box('dashboard_primary', 'dashboard', 'side');              // WordPress Events and News
         remove_meta_box('dashboard_activity', 'dashboard', 'normal');           // Activity
-	remove_meta_box('e-dashboard-overview', 'dashboard', 'normal');           // Elementor News
+	remove_meta_box('e-dashboard-overview', 'dashboard', 'normal');         // Elementor News
         remove_action('welcome_panel', 'wp_welcome_panel');			// Welcome Panel
     }
 }
