@@ -21,18 +21,18 @@ add_action('admin_bar_menu', 'aton_admin_bar_logo', 11);
 
 // REMOVE DASHBOARD MENUS
 function remove_dashboard_menus() {
-    if (!current_user_can('administrator')) {
+    if (!current_user_can('administrator') && !current_user_can('editor')) {
 		
         remove_submenu_page( 'index.php', 'update-core.php' ); // Updates
-	remove_menu_page('edit.php'); // Posts
-	remove_menu_page('upload.php'); // Media
-        remove_menu_page('edit-comments.php'); // Comments
-        remove_menu_page('edit.php?post_type=page'); // Pages
+	//remove_menu_page('edit.php'); // Posts
+	//remove_menu_page('upload.php'); // Media
+        //remove_menu_page('edit-comments.php'); // Comments
+        //remove_menu_page('edit.php?post_type=page'); // Pages
         remove_menu_page('elementor'); // Elementor
 	remove_menu_page( 'edit.php?post_type=elementor_library' ); // Elementor Library
-        remove_menu_page('themes.php'); // Themes
+        //remove_menu_page('themes.php'); // Themes
         remove_menu_page('plugins.php'); // Plugins
-        remove_menu_page('users.php'); // Users
+        //remove_menu_page('users.php'); // Users
         remove_menu_page('tools.php'); // Tools
         remove_menu_page('options-general.php'); // Settings
     }
