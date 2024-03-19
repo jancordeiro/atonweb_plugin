@@ -33,7 +33,7 @@ add_filter( 'login_errors', 'custom_login_errors' );
 
 // CUSTOM DASH FOOTER TEXT
 function custom_admin_footer_text() {
-    echo '<center><a href="https://atonweb.xyz" target="_blank" class="button button-primary" style="width: 100%; border-radius: 10px;">Tech by ATON WEB</a></center>';
+    echo '<center><a href="https://atonweb.xyz" target="_blank" class="button button-primary" style="width: 100%; border-radius: 10px;">Powered by ATON WEB</a></center>';
 }
 add_filter('admin_footer_text', 'custom_admin_footer_text');
 
