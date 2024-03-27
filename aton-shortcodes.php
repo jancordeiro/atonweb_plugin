@@ -24,37 +24,35 @@ function social_share_shortcode() {
             gap: 10px;
         }
         .social-share a {
-            display: flex;
-			padding: 10px;
-			border-radius: 100%;
-            text-decoration: none;
+		color: #fff;
+		display: flex;
+		padding: 10px;
+		border-radius: 100%;
+		text-decoration: none;
         }
-		.facebook {
-			color: #fff;
-            background-color: #3b5998;
-			font-size: 20px;
-		}
-		.social-share a:hover.facebook {
-			color: #3b5998;
-            background-color: #fff;
+	.facebook {
+        	background-color: #3b5998;
+		font-size: 20px;
+	}
+	.social-share a:hover.facebook {
+		color: #3b5998;
+        	background-color: #fff;
         }
-		.twitter {
-			color: #fff;
-			background-color: #55acee;
-			font-size: 20px;
-		}
-		.social-share a:hover.twitter {
-			color: #55acee;
-            background-color: #fff;
+	.twitter {
+		background-color: #55acee;
+		font-size: 20px;
+	}
+	.social-share a:hover.twitter {
+		color: #55acee;
+        	background-color: #fff;
         }
-		.whatsapp {
-			color: #fff;
-			background-color: #4dc247;
-			font-size: 20px;
-		}
-		.social-share a:hover.whatsapp {
-			color: #4dc247;
-            background-color: #fff;
+	.whatsapp {
+		background-color: #4dc247;
+		font-size: 20px;
+	}
+	.social-share a:hover.whatsapp {
+		color: #4dc247;
+        	background-color: #fff;
         }
     </style>
     <div class="social-share">
